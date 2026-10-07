@@ -1,0 +1,203 @@
+{
+  "date": "2026-10-07T10:05:09.547Z",
+  "passed": true,
+  "journeys": [
+    "register",
+    "onboard",
+    "meal-create",
+    "portion-edit",
+    "meal-delete",
+    "water-add-undo",
+    "weight",
+    "thali-save-log",
+    "saved-repeat",
+    "workout-complete",
+    "refresh",
+    "progress",
+    "logout-login",
+    "dialog-escape"
+  ],
+  "layouts": [
+    {
+      "route": "/today",
+      "width": 360,
+      "overflow": false
+    },
+    {
+      "route": "/diary",
+      "width": 360,
+      "overflow": false
+    },
+    {
+      "route": "/thali",
+      "width": 360,
+      "overflow": false
+    },
+    {
+      "route": "/workouts",
+      "width": 360,
+      "overflow": false
+    },
+    {
+      "route": "/progress",
+      "width": 360,
+      "overflow": false
+    },
+    {
+      "route": "/profile",
+      "width": 360,
+      "overflow": false
+    },
+    {
+      "route": "/planner",
+      "width": 360,
+      "overflow": false
+    },
+    {
+      "route": "/settings",
+      "width": 360,
+      "overflow": false
+    },
+    {
+      "route": "/analytics",
+      "width": 360,
+      "overflow": false
+    },
+    {
+      "route": "/today",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/diary",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/thali",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/workouts",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/progress",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/profile",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/planner",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/settings",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/analytics",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "/today",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/diary",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/thali",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/workouts",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/progress",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/profile",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/planner",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/settings",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/analytics",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "route": "/today",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/diary",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/thali",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/workouts",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/progress",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/profile",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/planner",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/settings",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "/analytics",
+      "width": 1440,
+      "overflow": false
+    }
+  ],
+  "pageErrors": []
+}

@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-07T08:15:23.009Z",
+  "passed": true,
+  "checks": [
+    "Foreign login Origin rejected (403)",
+    "Origin-less cookie refresh rejected (403)",
+    "Unconfigured recovery explicitly unavailable (503)",
+    "Versioned authentication rate limit (429, Retry-After 60)"
+  ]
+}

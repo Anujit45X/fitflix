@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+node_modules/
+frontend/dist/
+backend/target/
+*.log
+*.tsbuildinfo
+*.backup
+.local/
+__pycache__/
+docs/screenshots/
+frontend/public/docs/screenshots/

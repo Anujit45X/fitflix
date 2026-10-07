@@ -1,0 +1,5 @@
+import os,tempfile
+"""Run AFTER restarting the API and database, following the three flow suites."""
+import requests,json,os
+s=requests.Session();s.trust_env=False;account=json.load(open(os.path.join(tempfile.gettempdir(),'fitplix-test-account.json')));expected=json.load(open(os.path.join(tempfile.gettempdir(),'fitplix-persistence-evidence.json')));base=os.getenv('API_BASE','http://localhost:8080/api')
+a=s.post(base+'/auth/login',json=account,timeout=20);a.raise_for_status();s.headers['Authorization']='Bearer '+a.json()['accessToken'];r=s.get(base+'/dashboard?date='+expected['date'],timeout=20);r.raise_for_status();d=r.json();assert d['totals']==expected['dashboard']['totals'];assert {x['id'] for x in d['meals']}=={x['id'] for x in expected['dashboard']['meals']};assert d['weight']==expected['dashboard']['weight'];assert d['target']==expected['dashboard']['target'];print('PASS: account, meal IDs and nutrient totals, water, weight, activity and target snapshots survived API/database process restart.')

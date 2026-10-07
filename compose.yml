@@ -1,0 +1,80 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: fitplix
+      POSTGRES_USER: fitplix
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?Set DATABASE_PASSWORD}
+    volumes:
+      - fitplix_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fitplix -d fitplix"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+  migrate:
+    build: ./backend
+    command: ["--fitflix.migrate-only=true", "--server.port=0"]
+    environment:
+      DATABASE_URL: jdbc:postgresql://db:5432/fitplix
+      DATABASE_USER: fitplix
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:?Set DATABASE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET}
+      APP_ORIGIN: ${APP_ORIGIN:?Set APP_ORIGIN}
+      SECURE_COOKIE: ${SECURE_COOKIE:-true}
+      DEMO_MODE: false
+      FLYWAY_ENABLED: true
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: jdbc:postgresql://db:5432/fitplix
+      DATABASE_USER: fitplix
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:?Set DATABASE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET}
+      APP_ORIGIN: ${APP_ORIGIN:?Set APP_ORIGIN}
+      TRUST_PROXY: true
+      SECURE_COOKIE: ${SECURE_COOKIE:-true}
+      DEMO_MODE: ${DEMO_MODE:-false}
+      FLYWAY_ENABLED: false
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-}
+      MAIL_ENABLED: ${MAIL_ENABLED:-false}
+      MAIL_FROM: ${MAIL_FROM:-noreply@fitplix.local}
+      SMTP_HOST: ${SMTP_HOST:-localhost}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USERNAME: ${SMTP_USERNAME:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_AUTH: ${SMTP_AUTH:-true}
+      SMTP_TLS: ${SMTP_TLS:-true}
+      JAVA_TOOL_OPTIONS: -Duser.timezone=UTC
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/actuator/health/readiness"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+    restart: unless-stopped
+  web:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:${WEB_PORT:-8088}:8080"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+volumes:
+  fitplix_pgdata:

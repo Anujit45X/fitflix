@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-07",
+  "environment": "isolated native local PostgreSQL 17",
+  "passed": true,
+  "source": "fitflix",
+  "destination": "fitflix_restore_check",
+  "format": "pg_dump custom",
+  "restore_exit_code": 0,
+  "restored_foods": 7793,
+  "successful_migrations": 6,
+  "restored_workout_records_at_capture": 3,
+  "repeated_usda_imports": 2,
+  "foods_after_repeated_imports": 7793,
+  "production_restore_tested": false
+}

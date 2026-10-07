@@ -1,0 +1,12 @@
+{
+  "original_migrations_unchanged": {
+    "V1__identity.sql": true,
+    "V2__nutrition.sql": true,
+    "V3__usda_foods.sql": true,
+    "V4__product.sql": true,
+    "V5__password_recovery.sql": true
+  },
+  "usda_sha256": "b80817294b8850530aaedf2e515c02593b1824f763a0ff356e5c2081643e6fd0",
+  "archive_download_verified": true,
+  "foods": 7793
+}

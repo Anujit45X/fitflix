@@ -1,0 +1,10 @@
+.git
+.local
+**/node_modules
+**/target
+**/dist
+**/.env
+**/.env.*
+docs/screenshots
+*.backup
+*.log

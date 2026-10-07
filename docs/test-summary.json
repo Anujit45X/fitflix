@@ -1,0 +1,50 @@
+{
+  "backend": [
+    {
+      "name": "com.fitplix.DatabaseIntegrationTest",
+      "tests": "3",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0"
+    },
+    {
+      "name": "com.fitplix.ProfileServiceTest",
+      "tests": "2",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0"
+    },
+    {
+      "name": "com.fitplix.ScoreCalculatorTest",
+      "tests": "4",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0"
+    },
+    {
+      "name": "com.fitplix.TokenServiceTest",
+      "tests": "2",
+      "errors": "0",
+      "skipped": "0",
+      "failures": "0"
+    }
+  ],
+  "frontend_utility_tests": {
+    "passed": 2
+  },
+  "api_suites": [
+    "phase1: PASS",
+    "nutrition: PASS",
+    "analytics: PASS"
+  ],
+  "browser_flow": "PASS",
+  "restart_persistence": "PASS",
+  "reference_sql": "PASS",
+  "database_runtime": "PGlite18.3 via PostgreSQL JDBC, disk-backed; Flyway disabled for local tests",
+  "native_postgresql_flyway_deployment": "NOT RUN",
+  "recovery_api": "PASS, local SMTP capture",
+  "recovery_browser": "PASS",
+  "production_preflight_tests": 3,
+  "external_email_delivery": "NOT RUN",
+  "native_postgresql_multi_connection": "NOT RUN"
+}

@@ -1,0 +1,20 @@
+CREATE TABLE app_user (
+ id UUID PRIMARY KEY, email VARCHAR(254) NOT NULL UNIQUE, name VARCHAR(80) NOT NULL,
+ password_hash VARCHAR(100) NOT NULL, role VARCHAR(24) NOT NULL DEFAULT 'USER' CHECK(role IN ('USER','ADMIN','PRODUCT_MANAGER')),
+ created_at TIMESTAMPTZ NOT NULL DEFAULT now(), demo BOOLEAN NOT NULL DEFAULT false);
+CREATE TABLE user_profile (
+ user_id UUID PRIMARY KEY REFERENCES app_user(id) ON DELETE CASCADE,
+ age INT NOT NULL CHECK(age BETWEEN 18 AND 100), sex VARCHAR(12) NOT NULL CHECK(sex IN ('MALE','FEMALE')),
+ height DOUBLE PRECISION NOT NULL CHECK(height BETWEEN 100 AND 250), weight DOUBLE PRECISION NOT NULL CHECK(weight BETWEEN 30 AND 350),
+ start_weight DOUBLE PRECISION NOT NULL, target_weight DOUBLE PRECISION NOT NULL CHECK(target_weight BETWEEN 30 AND 350),
+ activity VARCHAR(16) NOT NULL, goal VARCHAR(16) NOT NULL, diet VARCHAR(24) NOT NULL,
+ water_target INT NOT NULL CHECK(water_target BETWEEN 500 AND 6000), calorie_target DOUBLE PRECISION NOT NULL,
+ protein_target DOUBLE PRECISION NOT NULL, carbs_target DOUBLE PRECISION NOT NULL, fat_target DOUBLE PRECISION NOT NULL,
+ fiber_target DOUBLE PRECISION NOT NULL DEFAULT 30, timezone VARCHAR(64) NOT NULL DEFAULT 'Asia/Kolkata', updated_at TIMESTAMPTZ NOT NULL DEFAULT now());
+CREATE TABLE auth_session (id UUID PRIMARY KEY, user_id UUID NOT NULL REFERENCES app_user(id) ON DELETE CASCADE,
+ refresh_hash VARCHAR(64) NOT NULL UNIQUE, expires_at TIMESTAMPTZ NOT NULL, revoked BOOLEAN NOT NULL DEFAULT false);
+CREATE INDEX auth_session_user_idx ON auth_session(user_id);
+CREATE TABLE analytics_event (id UUID PRIMARY KEY, user_id UUID REFERENCES app_user(id) ON DELETE CASCADE,
+ event_name VARCHAR(64) NOT NULL, occurred_at TIMESTAMPTZ NOT NULL DEFAULT now(), metadata TEXT NOT NULL DEFAULT '{}');
+CREATE INDEX event_name_time_idx ON analytics_event(event_name,occurred_at);
+CREATE INDEX event_user_time_idx ON analytics_event(user_id,occurred_at);

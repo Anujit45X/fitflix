@@ -1,0 +1,40 @@
+# Preview tier: database expires after 30 days. See docs/deployment.md.
+services:
+  - type: web
+    name: fitflix
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health/readiness
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PGHOST
+        fromDatabase: {name: fitflix-db, property: host}
+      - key: PGPORT
+        fromDatabase: {name: fitflix-db, property: port}
+      - key: PGDATABASE
+        fromDatabase: {name: fitflix-db, property: database}
+      - key: DATABASE_USER
+        fromDatabase: {name: fitflix-db, property: user}
+      - key: DATABASE_PASSWORD
+        fromDatabase: {name: fitflix-db, property: password}
+      - key: SECURE_COOKIE
+        value: 'true'
+      - key: DEMO_MODE
+        value: 'false'
+      - key: MAIL_ENABLED
+        value: 'false'
+      - key: TRUST_PROXY
+        value: 'true'
+databases:
+  - name: fitflix-db
+    plan: free
+    region: singapore
+    databaseName: fitflix
+    user: fitflix
+    postgresMajorVersion: '17'
+    ipAllowList: []
