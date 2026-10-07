@@ -1,0 +1,14 @@
+{
+  "url": "https://fitflix-1smy.onrender.com",
+  "date": "2026-10-07T10:25:20.972025+00:00",
+  "passed": [
+    "database readiness",
+    "SPA deep links",
+    "unauthenticated API denied",
+    "registration and secure HttpOnly cookie",
+    "profile and water writes",
+    "foreign-origin refresh denied",
+    "refresh rotation and persisted data after re-login",
+    "temporary account deleted"
+  ]
+}

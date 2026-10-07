@@ -1,5 +1,16 @@
 # Deploy Fitflix
 
+## Current public preview
+
+- Website: https://fitflix-1smy.onrender.com
+- Repository: https://github.com/Anujit45X/fitflix
+- Hosting dashboard: https://dashboard.render.com/web/srv-db31nq0m7kps73cnebvg
+- Blueprint: https://dashboard.render.com/blueprint/exs-db31mve0tbcc738dkabg
+- Deployed commit: `ccccdfefed75f43b0dd0b8a248a2e14e2d4c87e9` (October 7, 2026).
+- GitHub CI passed both application tests and production container smoke checks. Live HTTPS/API checks are recorded in `deployment-verification.json`; the temporary cloud test account was deleted.
+- Both resources use free plans. The database expires 30 days after creation; upgrade before expiry if keeping data.
+- The deployment uses the public Git repository URL. Render reports that automatic deploys require connecting its GitHub repository integration. For now, check GitHub CI and use **Manual Deploy → Deploy latest commit** in the service dashboard. The blueprint's checks-pass policy applies when that integration is connected.
+
 The root Dockerfile builds React into Spring Boot's static resources. One HTTPS web service serves the UI and `/api/v1`, with a separate PostgreSQL 17 database. Browser deep links are explicitly forwarded to the SPA; API authorization remains enforced.
 
 ## Render preview

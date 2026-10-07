@@ -1,7 +1,11 @@
 # Fitflix
 Adult fitness and nutrition tracking with Indian meal habits in mind.
 
-**Current status:** working local full-stack application, recovered from the earlier Fitplix MVP and extended here. No staging or production deployment has occurred. See [current test report](docs/current-test-report.md) and [implementation checklist](docs/implementation-checklist.md). Historical uppercase test/product reports came with the recovered archive and are not current verification evidence.
+**Live preview:** [fitflix-1smy.onrender.com](https://fitflix-1smy.onrender.com) · [GitHub Actions](https://github.com/Anujit45X/fitflix/actions)
+
+The full-stack app is deployed on Render with PostgreSQL. HTTPS, registration, secure sessions, profile/water persistence, and account deletion were verified on October 7, 2026. The free instance sleeps when idle; its free database expires after 30 days. See [deployment details](docs/deployment.md) and [cloud verification](docs/deployment-verification.json). This preview requires a hosting upgrade for durable production use.
+
+Recovered from the earlier Fitplix MVP and extended here. See [current test report](docs/current-test-report.md) and [implementation checklist](docs/implementation-checklist.md) for pre-deployment implementation evidence. Historical uppercase test/product reports came with the recovered archive and are not current verification evidence.
 
 ## Run locally on this Windows machine
 Requirements already discovered: Java 21, PostgreSQL 17 binaries, Node 22.16, Maven 3.9 in the local wrapper cache.
@@ -26,7 +30,7 @@ For public hosting, use the root Dockerfile and [Render deployment guide](docs/d
 python scripts/configure_local.py
 docker compose up --build -d
 ~~~
-Open http://localhost:8088 after all health checks pass. Docker was unavailable on this host: containers and Compose are prepared but not runtime-verified. A separate migration job runs before the API, which uses Hibernate validation and has Flyway disabled. Do not publish the loopback binding without authorized HTTPS staging setup. See [container and deployment instructions](infra/README.md).
+Open http://localhost:8088 after all health checks pass. Docker was unavailable on the Windows development host. The root production Dockerfile passed GitHub Actions build/startup checks and runs on Render; the separate Compose topology has not been runtime-verified. Compose runs a migration job before the API, which uses Hibernate validation and has Flyway disabled. See [container and deployment instructions](infra/README.md).
 
 ## Features
 - Registration, login/logout, BCrypt and PostgreSQL-backed rotating refresh sessions with HttpOnly cookies. Access tokens remain in memory, and the backend checks session revocation on every request.
