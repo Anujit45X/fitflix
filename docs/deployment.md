@@ -4,7 +4,7 @@ The root Dockerfile builds React into Spring Boot's static resources. One HTTPS 
 
 ## Render preview
 
-Connect this repository to a new Render Blueprint and select `render.yaml` on branch `codex/fitflix-release`. Review the resource summary before applying. The blueprint explicitly requests **free** web and database plans in Singapore and generates a private JWT signing key. No local records, test accounts, or secrets are uploaded.
+Connect this repository to a new Render Blueprint and select `render.yaml` on branch `main`. Review the resource summary before applying. The blueprint explicitly requests **free** web and database plans in Singapore and generates a private JWT signing key. No local records, test accounts, or secrets are uploaded.
 
 Render provides `RENDER_EXTERNAL_URL`; the entrypoint uses it as `APP_ORIGIN`. The database is connected through private host/user/password references and has no public IP allowlist. Migrations run during startup before the readiness check passes. Automatic deploys wait for GitHub checks. Do not reuse the local trust-authenticated PostgreSQL cluster.
 
